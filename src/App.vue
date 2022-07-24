@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Navbar from './components/Navbar.vue';
+import Search from './components/Search.vue';
 </script>
 
 <template>
@@ -9,7 +10,7 @@ import Navbar from './components/Navbar.vue';
       <img src="./assets/images/home.png" alt="">
     </div>
     <div>
-      Home
+      <Search/>
     </div>
   </div>
 </template>
