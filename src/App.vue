@@ -12,7 +12,9 @@ import Search from './components/Search.vue';
         <Time></Time>
       </div>
       <div class="box">
-        <Search/>
+        <div style="padding: 15px;">
+          <Search/>
+        </div>
       </div>
     </div>
     <div style="margin-top: 100vh;">1</div>
@@ -75,5 +77,6 @@ import Search from './components/Search.vue';
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 100%;
 }
 </style>
