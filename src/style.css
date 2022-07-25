@@ -1,3 +1,34 @@
+:root {
+  --bg: #fff;
+  --gray-1: rgba(15, 23, 42, 0.02);
+  --gray-2: rgba(15, 23, 42, 0.04);
+  --gray-3: rgba(15, 23, 42, 0.06);
+  --gray-4: rgba(15, 23, 42, 0.15);
+  --gray-5: rgba(15, 23, 42, 0.25);
+  --gray-6: rgba(15, 23, 42, 0.45);
+  --gray-7: rgba(15, 23, 42, 0.65);
+  --gray-8: rgba(15, 23, 42, 0.85);
+  --gray-9: rgba(15, 23, 42, 1);
+  --theme-1: #eff6ff;
+  --theme-2: #dbeafe;
+  --theme-3: #bfdbfe;
+  --theme-4: #93c5fd;
+  --theme-5: #60a5fa;
+  --theme-6: #3b82f6;
+  --theme-7: #2563eb;
+  --theme-8: #1d4ed8;
+  --theme-9: #1e40af;
+  --theme-10: #1e3a8a;
+  --red: #ef4444;
+  --red-sec: #fee2e2;
+  --blue: #3b82f6;
+  --blue-sec: #dbeafe;
+  --green: #10b981;
+  --green-sec: #d1fae5;
+  --orange: #f97316;
+  --orange-sec: #ffedd5;
+}
+
 @font-face {
   font-family: 'Mc';
   src: url("./assets/fonts/mc.ttf") format('truetype');
@@ -16,5 +47,5 @@ a:hover {
 body {
   margin: 0;
   font-family: Mc, Avenir, Helvetica, Arial, sans-serif;
-  background-color: #f9faff;
+  background-color: #f1f2f6;
 }

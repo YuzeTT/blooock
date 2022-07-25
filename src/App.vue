@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import Navbar from './components/Navbar.vue';
+// import Navbar from './components/Navbar.vue';
 import Search from './components/Search.vue';
 </script>
 
 <template>
-  <Navbar/>
+  <!-- <Navbar/> -->
   <div>
     <div class="logo">
       <img src="./assets/images/home.png" alt="">
@@ -16,10 +16,6 @@ import Search from './components/Search.vue';
 </template>
 
 <style scoped>
-body {
-  background-image: url("./assets/images/options_background.png");
-}
-
 .logo {
   margin-top: 30px;
   margin-bottom: 20px;
