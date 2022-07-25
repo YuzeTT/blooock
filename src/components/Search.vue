@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 import { SubdirectoryArrowLeftRound } from '@vicons/material'
 
-const tab = ref(0)
-const input = ref('')
+const tab = ref<number>(0)
+const input = ref<string>('')
+const inputVal = ref<any>(null)
 
 const list = [
   { name: '百度', url: 'http://www.baidu.com/s?wd=' },
@@ -59,6 +60,10 @@ const go = () => {
   }
   input.value = ''
 }
+
+nextTick(() => {
+  inputVal.value.focus()
+})
 </script>
 
 <template>
@@ -71,7 +76,7 @@ const go = () => {
     </n-space>
   </div>
   <div class="input_box">
-    <input type="text" class="input" @keydown.enter="go" v-model="input">
+    <input type="text" class="input" @keydown.enter="go" v-model="input" ref="inputVal">
     <n-button strong secondary circle class="input_btn" size="large" @click="go" :disabled="input === ''">
       <template #icon>
         <n-icon color="var(--gray-7)"><SubdirectoryArrowLeftRound /></n-icon>
@@ -140,7 +145,7 @@ const go = () => {
   display: flex;
   height: 40px;
   border: none;
-  
+  background-color: transparent;
   outline: none;
   border-radius: 999px;
   padding: 0px 15px;

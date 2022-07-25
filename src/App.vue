@@ -2,6 +2,7 @@
 // import Navbar from './components/Navbar.vue';
 import Time from './components/Time.vue';
 import Search from './components/Search.vue';
+import { KeyboardDoubleArrowDownRound } from '@vicons/material';
 </script>
 
 <template>
@@ -16,8 +17,18 @@ import Search from './components/Search.vue';
           <Search/>
         </div>
       </div>
+      <div class="bottom">
+        <n-space justify="center" style="align-items: center;">
+          <n-icon size="1rem" style="vertical-align: -10%;">
+            <KeyboardDoubleArrowDownRound/>
+          </n-icon>
+          <div>
+            下滑查看更多
+          </div>
+        </n-space>
+      </div>
     </div>
-    <div style="margin-top: 100vh;">1</div>
+    <div style="margin-top: 100vh;"></div>
   </div>
 </template>
 
@@ -78,5 +89,16 @@ import Search from './components/Search.vue';
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+  /* left: 0; */
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+  color: var(--gray-6);
+  font-size: 1rem;
 }
 </style>
