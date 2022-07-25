@@ -2,12 +2,14 @@
 // import Navbar from './components/Navbar.vue';
 import Time from './components/Time.vue';
 import Search from './components/Search.vue';
+import Tools from './components/Tools.vue';
 import { KeyboardDoubleArrowDownRound } from '@vicons/material';
 </script>
 
 <template>
   <!-- <Navbar/> -->
   <div>
+    <n-back-top :right="20" />
     <div class="home">
       <div class="time">
         <Time></Time>
@@ -29,6 +31,7 @@ import { KeyboardDoubleArrowDownRound } from '@vicons/material';
       </div>
     </div>
     <div style="margin-top: 100vh;"></div>
+    <Tools/>
   </div>
 </template>
 
