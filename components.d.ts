@@ -17,5 +17,6 @@ declare module '@vue/runtime-core' {
     NTabs: typeof import('naive-ui')['NTabs']
     NTag: typeof import('naive-ui')['NTag']
     Search: typeof import('./src/components/Search.vue')['default']
+    Time: typeof import('./src/components/Time.vue')['default']
   }
 }

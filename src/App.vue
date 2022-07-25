@@ -1,30 +1,34 @@
 <script setup lang="ts">
 // import Navbar from './components/Navbar.vue';
+import Time from './components/Time.vue';
 import Search from './components/Search.vue';
 </script>
 
 <template>
   <!-- <Navbar/> -->
   <div>
-    <div class="logo">
-      <img src="./assets/images/home.png" alt="">
+    <div class="home">
+      <div class="time">
+        <Time></Time>
+      </div>
+      <div class="box">
+        <Search/>
+      </div>
     </div>
-    <div>
-      <Search/>
-    </div>
+    <div style="margin-top: 100vh;">1</div>
   </div>
 </template>
 
 <style scoped>
-.logo {
-  margin-top: 30px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-}
-
-.logo img {
-  width: 150px;
+.time {
+  font-size: 64px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--gray-8);
+  font-weight: bold;
+  font-family: "Microsoft Yahei Light","Microsoft Yahei","PingFang SC","Helvetica Neue",Helvetica,Tahoma,Arial,sans-serif;;
 }
 
 /* .mc-input_box {
@@ -65,4 +69,11 @@ import Search from './components/Search.vue';
   border-right: #5C669D 2px solid;
   border-bottom: #5C669D 4px solid;
 } */
+
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 </style>
