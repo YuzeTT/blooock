@@ -119,7 +119,7 @@ const getWindowResize = function () {
                 <n-grid cols="1 s:2 m:3 l:4 xl:5 2xl:6" responsive="screen" :x-gap="12" :y-gap="12">
                   <n-grid-item>
                     <div class="developer_card">
-                      <img class="developer_avatar" src="https://avatars.githubusercontent.com/u/61106448?v=4" alt="">
+                      <img class="developer_avatar" src="../assets/images/avatars/YuzeTT.jpg" alt="">
                       <div>
                         <div class="developer_name">YuzeTT</div>
                         <n-space>
@@ -135,7 +135,7 @@ const getWindowResize = function () {
                   </n-grid-item>
                   <n-grid-item>
                     <div class="developer_card">
-                      <img class="developer_avatar" src="	https://avatars.githubusercontent.com/u/73894257?v=4" alt="">
+                      <img class="developer_avatar" src="../assets/images/avatars/Cha-Shao.png" alt="">
                       <div>
                         <div class="developer_name">ChaShao</div>
                         <n-space>
