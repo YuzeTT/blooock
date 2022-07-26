@@ -1,18 +1,52 @@
 <script setup lang="ts">
 import { ref, nextTick } from 'vue'
-import { SubdirectoryArrowLeftRound } from '@vicons/material'
+import { SubdirectoryArrowLeftRound, EditRound } from '@vicons/material'
 
 const tab = ref<number>(0)
 const input = ref<string>('')
 const inputVal = ref<any>(null)
 
-const list = [
-  { name: '百度', url: 'http://www.baidu.com/s?wd=' },
-  { name: '谷歌', url: 'www.google.com' },
-  { name: '必应', url: 'www.bing.com' },
-  { name: 'MC Wiki', url: '...' },
-  { name: 'MC百科', url: '...' },
-]
+const list = ref([
+  { name: '百度', url: 'http://www.baidu.com/s?wd=', color: '#2529d8' },
+  { name: '谷歌', url: 'www.google.com', color: '#ea4335' },
+  { name: '必应', url: 'www.bing.com', color: '#00a1f1' },
+  { name: 'MC Wiki', url: 'https://minecraft.fandom.com/zh/wiki/Special:%E6%90%9C%E7%B4%A2?query=', color: '#db1f29' },
+])
+// const list = [
+//   { name: '百度', url: 'http://www.baidu.com/s?wd=' },
+//   { name: '谷歌', url: 'www.google.com' },
+//   { name: '必应', url: 'www.bing.com' },
+//   { name: 'MC Wiki', url: '...' },
+//   { name: 'MC百科', url: '...' },
+//   { name: '插件百科', url: '...' },
+//   { name: 'CurseForge', url: '...' },
+// ]
+
+const options = ref([
+  { label: 'MC百科', key: 'MC百科', url: 'https://search.mcmod.cn/s?key=' },
+  { label: '插件百科', key: '插件百科', url: '...' },
+  { label: 'CurseForge', key: 'CurseForge', url: '...' },
+])
+
+// const list_other = list.other
+
+// list.forEach((item:any) => {
+//   if (!item.show) {
+//     // item.url = item.url + input.value
+//     // item.label = item.name
+//     // item.key = item.name
+//     options.value = options + {
+//       label: item.name,
+//       key: item.name,
+//     }
+//   }
+// })
+
+// {
+//   label: '滨海湾金沙，新加坡',
+//   key: 'marina bay sands',
+//   disabled: true
+// },
 
 const change_tab = (index: number) => {
   tab.value = index
@@ -34,6 +68,10 @@ document.onkeydown = function (e) {
   if (e.altKey && e.key === '5') {
     tab.value = 4
   }
+}
+
+const handleSelect = (key: string | number) => {
+  console.log(key)
 }
 
 
@@ -71,7 +109,19 @@ nextTick(() => {
     <n-space justify="center">
       <div v-for="(item, i) in list" :key="i" @click="change_tab(i)">
         <div class="list_item_keyword">Alt + {{ i + 1 }}</div>
-        <div class="list_item" :class="i==tab?'activated':''">{{ item.name }}</div>
+        <div class="list_item" :class="i==tab?'activated':''" :style="i==tab?{backgroundColor: item.color}:''">{{ item.name }}</div>
+      </div>
+      <div>
+        <div class="list_item_keyword">Alt + Enter</div>
+        <!-- <n-dropdown trigger="hover" :options="options" @select="handleSelect">
+          <div class="list_item">更多...</div>
+        </n-dropdown> -->
+        <div class="list_item other">
+          <n-icon>
+            <EditRound/>
+          </n-icon>
+          编辑
+        </div>
       </div>
     </n-space>
   </div>
@@ -107,8 +157,8 @@ nextTick(() => {
 }
 
 .list_item.activated {
-  background: linear-gradient(to right,#5f87f8,#3860f4);
-  animation: myAnimation .2s linear forwards;
+  /* background: linear-gradient(to right,#5f87f8,#3860f4); */
+  animation: myAnimation .15s linear forwards;
 }
 
 .list_item_keyword {
@@ -118,13 +168,20 @@ nextTick(() => {
   margin-bottom: 6px;
 }
 
+.other {
+  display: flex;
+  /* width: 100%; */
+  align-items: center;
+  gap: 5px;
+}
+
 @keyframes myAnimation {
   from {
-    background: var(--bg);
+    /* background: var(--bg); */
     color: var(--gray-8);
   }
   to {
-    background: var(--theme-6);
+    /* background: var(--theme-6); */
     color: #fff;
   }
 }
