@@ -20,14 +20,16 @@ import { KeyboardDoubleArrowDownRound } from '@vicons/material';
         </div>
       </div>
       <div class="bottom">
-        <n-space justify="center" style="align-items: center;">
-          <n-icon size="1rem" style="vertical-align: -10%;">
-            <KeyboardDoubleArrowDownRound/>
-          </n-icon>
-          <div>
-            下滑查看更多
-          </div>
-        </n-space>
+        <div>
+          <n-space justify="center">
+            <n-icon size="1rem" style="vertical-align: -10%;">
+              <KeyboardDoubleArrowDownRound/>
+            </n-icon>
+            <div>
+              下滑查看更多
+            </div>
+          </n-space>
+        </div>
       </div>
     </div>
     <div style="margin-top: 100vh;"></div>

@@ -65,7 +65,6 @@ const getWindowResize = function () {
     <div class="box">
       <n-layout has-sider>
         <n-layout-sider
-          show-trigger
           collapse-mode="width"
           :collapsed-width="64"
           :collapsed="windowWidth < 768"
