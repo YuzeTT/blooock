@@ -2,7 +2,7 @@
 // import Navbar from './components/Navbar.vue';
 import Time from './components/Time.vue';
 import Search from './components/Search.vue';
-import Tools from './components/Tools.vue';
+// import Tools from './components/Tools.vue';
 import { KeyboardDoubleArrowDownRound } from '@vicons/material';
 </script>
 
@@ -33,7 +33,8 @@ import { KeyboardDoubleArrowDownRound } from '@vicons/material';
       </div>
     </div>
     <div style="margin-top: 100vh;"></div>
-    <Tools/>
+    <!-- <Tools/> -->
+    <router-view/>
   </div>
 </template>
 
