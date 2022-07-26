@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { ref, nextTick } from 'vue'
+import { ref, nextTick, onMounted } from 'vue'
 import { SubdirectoryArrowLeftRound, EditRound } from '@vicons/material'
 
-const tab = ref<number>(1)
+const tab = ref<number>(0)
 const input = ref<string>('')
 const inputVal = ref<any>(null)
 const showEditModal = ref<boolean>(false)
 const showList = ref<boolean[]>([true, true, true, true, false, false, false])
 
 const list = ref([
-  { key: 1, name: '百度', url: 'http://www.baidu.com/s?wd=', color: '#2529d8' },
-  { key: 2, name: '谷歌', url: 'www.google.com', color: '#ea4335' },
-  { key: 3, name: '必应', url: 'www.bing.com', color: '#00a1f1' },
-  { key: 4, name: 'MC Wiki', url: 'https://minecraft.fandom.com/zh/wiki/Special:%E6%90%9C%E7%B4%A2?query=', color: '#db1f29' },
-  { key: 5, name: 'MC百科', url: 'https://search.mcmod.cn/s?key=' },
-  { key: 6, name: '插件百科', url: '...' },
-  { key: 7, name: 'CurseForge', url: '...' },
+  { key: 0, name: '百度', url: 'http://www.baidu.com/s?wd=', color: '#2529d8' },
+  { key: 1, name: '谷歌', url: 'www.google.com', color: '#ea4335' },
+  { key: 2, name: '必应', url: 'www.bing.com', color: '#00a1f1' },
+  { key: 3, name: 'MC Wiki', url: 'https://minecraft.fandom.com/zh/wiki/Special:%E6%90%9C%E7%B4%A2?query=', color: '#db1f29' },
+  { key: 4, name: 'MC百科', url: 'https://search.mcmod.cn/s?key=' },
+  { key: 5, name: '插件百科', url: '...' },
+  { key: 6, name: 'CurseForge', url: '...' },
 ])
 // const list = [
 //   { name: '百度', url: 'http://www.baidu.com/s?wd=' },
@@ -26,12 +26,6 @@ const list = ref([
 //   { name: '插件百科', url: '...' },
 //   { name: 'CurseForge', url: '...' },
 // ]
-
-const options = ref([
-  { key: 5, label: 'MC百科', url: 'https://search.mcmod.cn/s?key=' },
-  { key: 6, label: '插件百科', url: '...' },
-  { key: 7, label: 'CurseForge', url: '...' },
-])
 
 // const list_other = list.other
 
@@ -75,28 +69,24 @@ document.onkeydown = function (e) {
   }
 }
 
-const handleSelect = (key: string | number) => {
-  console.log(key)
-}
-
 
 const go = () => {
   if (input.value) {
     console.log('go')
     switch(tab.value) {
-      case 1:
+      case 0:
         window.open(`https://www.baidu.com/s?wd=${input.value}`)
         break
-      case 2:
+      case 1:
         window.open(`https://www.google.com/search?q=${input.value}`)
         break
-      case 3:
+      case 2:
         window.open(`https://www.bing.com/search?q=${input.value}`)
         break
-      case 4:
+      case 3:
         window.open(`https://minecraft.fandom.com/zh/wiki/Special:%E6%90%9C%E7%B4%A2?query=${input.value}`)
         break
-      case 5:
+      case 4:
         window.open(`https://search.mcmod.cn/s?key=${input.value}`)
         break
     }
@@ -104,8 +94,12 @@ const go = () => {
   input.value = ''
 }
 
-nextTick(() => {
-  inputVal.value.focus()
+onMounted(() => {
+  nextTick(() => {
+    if (!showEditModal) {
+      inputVal.value.focus()
+    }
+  })
 })
 
 const editLinks = () => {
@@ -117,9 +111,9 @@ const editLinks = () => {
 <template>
   <div>
     <n-space justify="center">
-      <template v-for="item in list" >
-        <div :key="item.key" @click="change_tab(item.key)" v-if="showList[item.key]">
-          <div class="list_item_keyword">Alt + {{ item.key }}</div>
+      <template v-for="(item, i) in list" :key="i">
+        <div @click="change_tab(item.key)" v-if="showList[item.key]">
+          <div class="list_item_keyword">Alt + {{ item.key + 1 }}</div>
           <div class="list_item" :class="item.key==tab?'activated':''" :style="item.key==tab?{backgroundColor: item.color?item.color:'var(--theme-6)'}:''">{{ item.name }}</div>
         </div>
       </template>
@@ -145,30 +139,26 @@ const editLinks = () => {
       </template>
     </n-button>
   </div>
-  <n-modal v-model:show="showEditModal">
-    <n-card
-      style="width: 600px"
-      title="快捷搜索"
-      :bordered="false"
-      size="huge"
-      role="dialog"
-      aria-modal="true"
-    >
-      <div>
-        <div v-for="item in list" :key="item.key">
-          <n-space>
-            <div></div>
-            <div>
-              <n-switch v-model:value="showList[item.key]" />
-            </div>
-          </n-space>
-        </div>
-      </div>
-      <template #footer>
-        尾部
-      </template>
-    </n-card>
-  </n-modal>
+  <n-drawer v-model:show="showEditModal" :width="200" :placement="'right'">
+    <n-drawer-content title="快捷搜索">
+      <!-- <div>
+        <table>
+          <template v-for="(item, i) in list" :key="i">
+            <tr>
+              <td>{{ item.name }}</td>
+              <td style="padding-left: 10px;"><n-switch v-model:value="showList[item.key]" /></td>
+            </tr>
+          </template>
+        </table>
+      </div> -->
+      <n-space vertical>
+        <n-space v-for="(item, i) in list" :key="i" justify="space-between">
+          <div>{{ item.name }}</div>
+          <div><n-switch v-model:value="showList[item.key]" /></div>
+        </n-space>
+      </n-space>
+    </n-drawer-content>
+  </n-drawer>
 </template>
 
 <style scoped>
