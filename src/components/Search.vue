@@ -2,15 +2,20 @@
 import { ref, nextTick } from 'vue'
 import { SubdirectoryArrowLeftRound, EditRound } from '@vicons/material'
 
-const tab = ref<number>(0)
+const tab = ref<number>(1)
 const input = ref<string>('')
 const inputVal = ref<any>(null)
+const showEditModal = ref<boolean>(false)
+const showList = ref<boolean[]>([true, true, true, true, false, false, false])
 
 const list = ref([
-  { name: '百度', url: 'http://www.baidu.com/s?wd=', color: '#2529d8' },
-  { name: '谷歌', url: 'www.google.com', color: '#ea4335' },
-  { name: '必应', url: 'www.bing.com', color: '#00a1f1' },
-  { name: 'MC Wiki', url: 'https://minecraft.fandom.com/zh/wiki/Special:%E6%90%9C%E7%B4%A2?query=', color: '#db1f29' },
+  { key: 1, name: '百度', url: 'http://www.baidu.com/s?wd=', color: '#2529d8' },
+  { key: 2, name: '谷歌', url: 'www.google.com', color: '#ea4335' },
+  { key: 3, name: '必应', url: 'www.bing.com', color: '#00a1f1' },
+  { key: 4, name: 'MC Wiki', url: 'https://minecraft.fandom.com/zh/wiki/Special:%E6%90%9C%E7%B4%A2?query=', color: '#db1f29' },
+  { key: 5, name: 'MC百科', url: 'https://search.mcmod.cn/s?key=' },
+  { key: 6, name: '插件百科', url: '...' },
+  { key: 7, name: 'CurseForge', url: '...' },
 ])
 // const list = [
 //   { name: '百度', url: 'http://www.baidu.com/s?wd=' },
@@ -23,9 +28,9 @@ const list = ref([
 // ]
 
 const options = ref([
-  { label: 'MC百科', key: 'MC百科', url: 'https://search.mcmod.cn/s?key=' },
-  { label: '插件百科', key: '插件百科', url: '...' },
-  { label: 'CurseForge', key: 'CurseForge', url: '...' },
+  { key: 5, label: 'MC百科', url: 'https://search.mcmod.cn/s?key=' },
+  { key: 6, label: '插件百科', url: '...' },
+  { key: 7, label: 'CurseForge', url: '...' },
 ])
 
 // const list_other = list.other
@@ -79,19 +84,19 @@ const go = () => {
   if (input.value) {
     console.log('go')
     switch(tab.value) {
-      case 0:
+      case 1:
         window.open(`https://www.baidu.com/s?wd=${input.value}`)
         break
-      case 1:
+      case 2:
         window.open(`https://www.google.com/search?q=${input.value}`)
         break
-      case 2:
+      case 3:
         window.open(`https://www.bing.com/search?q=${input.value}`)
         break
-      case 3:
+      case 4:
         window.open(`https://minecraft.fandom.com/zh/wiki/Special:%E6%90%9C%E7%B4%A2?query=${input.value}`)
         break
-      case 4:
+      case 5:
         window.open(`https://search.mcmod.cn/s?key=${input.value}`)
         break
     }
@@ -102,21 +107,28 @@ const go = () => {
 nextTick(() => {
   inputVal.value.focus()
 })
+
+const editLinks = () => {
+  console.log('editLinks')
+  showEditModal.value = true
+}
 </script>
 
 <template>
   <div>
     <n-space justify="center">
-      <div v-for="(item, i) in list" :key="i" @click="change_tab(i)">
-        <div class="list_item_keyword">Alt + {{ i + 1 }}</div>
-        <div class="list_item" :class="i==tab?'activated':''" :style="i==tab?{backgroundColor: item.color}:''">{{ item.name }}</div>
-      </div>
+      <template v-for="item in list" >
+        <div :key="item.key" @click="change_tab(item.key)" v-if="showList[item.key]">
+          <div class="list_item_keyword">Alt + {{ item.key }}</div>
+          <div class="list_item" :class="item.key==tab?'activated':''" :style="item.key==tab?{backgroundColor: item.color?item.color:'var(--theme-6)'}:''">{{ item.name }}</div>
+        </div>
+      </template>
       <div>
         <div class="list_item_keyword">Alt + Enter</div>
         <!-- <n-dropdown trigger="hover" :options="options" @select="handleSelect">
           <div class="list_item">更多...</div>
         </n-dropdown> -->
-        <div class="list_item other">
+        <div class="list_item other" @click="editLinks">
           <n-icon>
             <EditRound/>
           </n-icon>
@@ -133,6 +145,30 @@ nextTick(() => {
       </template>
     </n-button>
   </div>
+  <n-modal v-model:show="showEditModal">
+    <n-card
+      style="width: 600px"
+      title="快捷搜索"
+      :bordered="false"
+      size="huge"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div>
+        <div v-for="item in list" :key="item.key">
+          <n-space>
+            <div></div>
+            <div>
+              <n-switch v-model:value="showList[item.key]" />
+            </div>
+          </n-space>
+        </div>
+      </div>
+      <template #footer>
+        尾部
+      </template>
+    </n-card>
+  </n-modal>
 </template>
 
 <style scoped>
