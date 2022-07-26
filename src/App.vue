@@ -8,34 +8,36 @@ import { KeyboardDoubleArrowDownRound } from '@vicons/material';
 
 <template>
   <!-- <Navbar/> -->
-  <div>
-    <n-back-top :right="20" />
-    <div class="home">
-      <div class="time">
-        <Time></Time>
-      </div>
-      <div class="box">
-        <div style="padding: 15px;">
-          <Search/>
+  <n-message-provider>
+    <div>
+      <n-back-top :right="20" />
+      <div class="home">
+        <div class="time">
+          <Time></Time>
+        </div>
+        <div class="box">
+          <div style="padding: 15px;">
+            <Search/>
+          </div>
+        </div>
+        <div class="bottom">
+          <div>
+            <n-space justify="center">
+              <n-icon size="1rem" style="vertical-align: -10%;">
+                <KeyboardDoubleArrowDownRound/>
+              </n-icon>
+              <div>
+                下滑查看更多
+              </div>
+            </n-space>
+          </div>
         </div>
       </div>
-      <div class="bottom">
-        <div>
-          <n-space justify="center">
-            <n-icon size="1rem" style="vertical-align: -10%;">
-              <KeyboardDoubleArrowDownRound/>
-            </n-icon>
-            <div>
-              下滑查看更多
-            </div>
-          </n-space>
-        </div>
-      </div>
+      <div style="margin-top: 100vh;"></div>
+      <!-- <Tools/> -->
+      <router-view/>
     </div>
-    <div style="margin-top: 100vh;"></div>
-    <!-- <Tools/> -->
-    <router-view/>
-  </div>
+  </n-message-provider>
 </template>
 
 <style scoped>

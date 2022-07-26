@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { ref, nextTick, onMounted } from 'vue'
+import { useMessage } from 'naive-ui'
 import { SubdirectoryArrowLeftRound, EditRound } from '@vicons/material'
+
+const message = useMessage()
 
 const tab = ref<number>(0)
 const input = ref<string>('')
 const inputVal = ref<any>(null)
 const showEditModal = ref<boolean>(false)
-const showList = ref<boolean[]>([true, true, true, true, false, false, false])
+const showList = ref<any>([true, true, true, true, false, false, false])
+// const showList = ref<boolean[]>([true, true, true, true, false, false, false])
 
 const list = ref([
   { key: 0, name: '百度', url: 'http://www.baidu.com/s?wd=', color: '#2529d8' },
@@ -67,6 +71,15 @@ document.onkeydown = function (e) {
   if (e.altKey && e.key === '5') {
     tab.value = 4
   }
+  if (e.altKey && e.key === '6') {
+    tab.value = 5
+  }
+  if (e.altKey && e.key === '7') {
+    tab.value = 6
+  }
+  if (e.altKey && e.key === 'Enter') {
+    showEditModal.value = true
+  }
 }
 
 
@@ -100,11 +113,18 @@ onMounted(() => {
       inputVal.value.focus()
     }
   })
+  // 读取 showList
+  showList.value = JSON.parse(localStorage.getItem('show_list') || '[true, true, true, true, false, false, false]')
 })
 
 const editLinks = () => {
-  console.log('editLinks')
   showEditModal.value = true
+}
+
+const saveList = () => {
+  showEditModal.value = false
+  localStorage.setItem('show_list', JSON.stringify(showList.value))
+  message.success('保存成功')
 }
 </script>
 
@@ -157,6 +177,11 @@ const editLinks = () => {
           <div><n-switch v-model:value="showList[item.key]" /></div>
         </n-space>
       </n-space>
+      <template #footer>
+        <n-button type="primary" @click="saveList">
+          保存
+        </n-button>
+      </template>
     </n-drawer-content>
   </n-drawer>
 </template>
