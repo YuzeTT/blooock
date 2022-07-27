@@ -1,41 +1,72 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 // import Navbar from './components/Navbar.vue';
 import Time from './components/Time.vue';
 import Search from './components/Search.vue';
 // import Tools from './components/Tools.vue';
 import { KeyboardDoubleArrowDownRound } from '@vicons/material';
+
+const showHome = ref(true)
+
+// onMounted(() => {
+//   window.addEventListener('scroll', scrollTop, true)
+// })
+
+// const scrollTop = () => {
+//   console.log(window.scrollY)
+//   showHome.value = false
+//   if (window.scrollY > 10) {
+//     document.getElementById("tools")?.scrollIntoView(
+//       {
+//         behavior: 'smooth',
+//         block: "end"
+//       }
+//     )
+//   }
+// }
+// window.onscroll = function () {
+//   showHome.value = false
+// }
+
+const showTools = () => {
+  console.log('showTools')
+}
 </script>
 
 <template>
   <!-- <Navbar/> -->
   <n-message-provider>
     <div>
-      <n-back-top :right="20" />
-      <div class="home">
-        <div class="time">
-          <Time></Time>
-        </div>
-        <div class="box">
-          <div style="padding: 15px;">
-            <Search/>
+      <div>
+        <n-back-top :right="20" />
+        <div class="home">
+          <div class="time">
+            <Time></Time>
+          </div>
+          <div class="box">
+            <div style="padding: 15px;">
+              <Search/>
+            </div>
+          </div>
+          <div class="bottom">
+            <div>
+              <n-space justify="center">
+                <n-icon size="1rem" style="vertical-align: -10%;">
+                  <KeyboardDoubleArrowDownRound/>
+                </n-icon>
+                <div>
+                  下滑有惊喜
+                </div>
+              </n-space>
+            </div>
           </div>
         </div>
-        <div class="bottom">
-          <div>
-            <n-space justify="center">
-              <n-icon size="1rem" style="vertical-align: -10%;">
-                <KeyboardDoubleArrowDownRound/>
-              </n-icon>
-              <div>
-                下滑查看更多
-              </div>
-            </n-space>
-          </div>
-        </div>
+        <div style="margin-top: 100vh;"></div>
       </div>
-      <div style="margin-top: 100vh;"></div>
       <!-- <Tools/> -->
-      <router-view/>
+      <div id="tools">
+        <router-view/>
+      </div>
     </div>
   </n-message-provider>
 </template>

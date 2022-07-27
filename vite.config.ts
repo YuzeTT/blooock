@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { VitePWA } from 'vite-plugin-pwa'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
@@ -18,6 +19,7 @@ export default defineConfig({
     }),
     Components({
       resolvers: [NaiveUiResolver()]
-    })
+    }),
+    VitePWA({ registerType: 'autoUpdate' })
   ]
 })

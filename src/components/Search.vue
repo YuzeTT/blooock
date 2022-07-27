@@ -82,7 +82,6 @@ document.onkeydown = function (e) {
   }
 }
 
-
 const go = () => {
   if (input.value) {
     console.log('go')

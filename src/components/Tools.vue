@@ -53,6 +53,18 @@ const menuOptions = [
           },
         ]
       },
+      {
+        type: 'group',
+        label: '原版 | Vanilla',
+        key: '原版',
+        children: [
+          {
+            label: '热门网站',
+            key: '热门网站',
+            icon: renderIcon(LocalFireDepartmentRound)
+          },
+        ]
+      },
       // {
       //   label: '饮品',
       //   key: 'beverage',
@@ -124,16 +136,19 @@ const getWindowResize = function () {
                 <div>
                   <h3 style="color: var(--gray-7);">从身份开始</h3>
                   <n-grid cols="1 s:2 m:3 l:4 xl:5 2xl:6" responsive="screen" :x-gap="12" :y-gap="12">
-                    <n-grid-item>
+                    <n-grid-item style="opacity: .5;">
                       <n-card
                         title="📃 我是 Fabric 玩家"
                         embedded
                         :bordered="false"
                       >
-                        <n-space>
+                        <n-tag :bordered="false">
+                          在写了...
+                        </n-tag>
+                        <!-- <n-space>
                           <n-button strong secondary type="info">Fabric 模组</n-button>
                           <n-button strong secondary>原版工具</n-button>
-                        </n-space>
+                        </n-space> -->
                       </n-card>
                     </n-grid-item>
                     <n-grid-item style="opacity: .5;">
