@@ -5,6 +5,7 @@ import Time from './components/Time.vue';
 import Search from './components/Search.vue';
 // import Tools from './components/Tools.vue';
 import { KeyboardDoubleArrowDownRound } from '@vicons/material';
+import ReloadPrompt from './components/ReloadPrompt.vue';
 
 const showHome = ref(true)
 
@@ -36,6 +37,7 @@ const showTools = () => {
 <template>
   <!-- <Navbar/> -->
   <n-message-provider>
+    <ReloadPrompt/>
     <div>
       <div>
         <n-back-top :right="20" />
