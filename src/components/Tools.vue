@@ -2,11 +2,11 @@
 import { ref, Component, h, onMounted } from 'vue'
 import { NIcon } from 'naive-ui'
 import { 
-  KeyboardDoubleArrowDownRound,
-  InsertLinkRound,
+  StyleRound,
+  ViewInArRound,
   InfoOutlined,
   LocalFireDepartmentRound,
-  QuestionMarkRound,
+  AttachFileRound,
   AppsRound
 } from '@vicons/material';
 
@@ -18,70 +18,86 @@ function renderIcon (icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) })
 }
 
+function renderImage (src: string) {
+  return () => h('img', {src: src, style: { width:'20px' }})
+}
+
 const menuOptions = [
   {
-    label: '快捷链接',
-    key: '快捷链接',
-    icon: renderIcon(InsertLinkRound),
+    label: '导航',
+    key: '导航',
+    icon: renderImage('src/assets/icons/links.webp'),
+  },
+  {
+    label: 'Fabirc 模组',
+    key: 'Fabirc模组',
+    icon: renderImage('src/assets/icons/fabric.png'),
     children: [
       {
-        label: '导航',
-        key: '导航',
-        icon: renderIcon(AppsRound)
+        label: '热门模组',
+        key: 'Fabirc-热门模组',
+        icon: renderImage('src/assets/icons/fire.webp'),
       },
-      {
-        type: 'group',
-        label: '模组 | Mod',
-        key: '模组',
-        children: [
-          {
-            label: '热门模组',
-            key: '热门模组',
-            icon: renderIcon(LocalFireDepartmentRound)
-          },
-        ]
-      },
-      {
-        type: 'group',
-        label: '插件 | Plugin',
-        key: '插件',
-        children: [
-          {
-            label: '热门插件',
-            key: '热门插件',
-            icon: renderIcon(LocalFireDepartmentRound)
-          },
-        ]
-      },
-      {
-        type: 'group',
-        label: '原版 | Vanilla',
-        key: '原版',
-        children: [
-          {
-            label: '热门网站',
-            key: '热门网站',
-            icon: renderIcon(LocalFireDepartmentRound)
-          },
-        ]
-      },
-      // {
-      //   label: '饮品',
-      //   key: 'beverage',
-      //   icon: renderIcon(QuestionMarkRound),
-      //   children: [
-      //     {
-      //       label: '威士忌',
-      //       key: 'whisky'
-      //     }
-      //   ]
-      // },
     ]
   },
   {
+    label: 'Forge 模组',
+    key: 'Forge模组',
+    icon: renderImage('src/assets/icons/forge.webp'),
+    // children: [
+    //   {
+    //     label: '热门模组',
+    //     key: 'Forge-热门模组',
+    //     icon: renderImage('src/assets/icons/fire.webp'),
+    //   },
+    //   {
+    //     label: '热门模组',
+    //     key: '热门模组',
+    //     icon: renderIcon(LocalFireDepartmentRound)
+    //   },
+    // ]
+  },
+  {
+    // type: 'group',
+    label: 'Bukkit 插件',
+    key: '插件',
+    icon: renderImage('src/assets/icons/bukkit.webp'),
+    // children: [
+    //   {
+    //     label: '热门插件',
+    //     key: '热门插件',
+    //     icon: renderImage('src/assets/icons/fire.webp'),
+    //   },
+    // ]
+  },
+  {
+    // type: 'group',
+    label: '原版',
+    key: '原版',
+    icon: renderImage('src/assets/icons/vanilla.webp'),
+    children: [
+      {
+        label: '热门网站',
+        key: '热门网站',
+        icon: renderImage('src/assets/icons/fire.webp'),
+      },
+    ]
+  },
+  // {
+  //   label: '饮品',
+  //   key: 'beverage',
+  //   icon: renderIcon(QuestionMarkRound),
+  //   children: [
+  //     {
+  //       label: '威士忌',
+  //       key: 'whisky'
+  //     }
+  //   ]
+  // },
+  {
     label: '关于',
     key: '关于',
-    icon: renderIcon(InfoOutlined)
+    icon: renderImage('src/assets/icons/about.webp'),
   },
 ]
 
@@ -136,27 +152,51 @@ const getWindowResize = function () {
                 <div>
                   <h3 style="color: var(--gray-7);">从身份开始</h3>
                   <n-grid cols="1 s:2 m:3 l:4 xl:5 2xl:6" responsive="screen" :x-gap="12" :y-gap="12">
-                    <n-grid-item style="opacity: .5;">
+                    <n-grid-item>
                       <n-card
-                        title="📃 我是 Fabric 玩家"
                         embedded
                         :bordered="false"
                       >
-                        <n-tag :bordered="false">
+                        <div 
+                          style="
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            font-size: 18px;
+                            color: var(--gray-8);
+                            margin-bottom: 20px;
+                          "
+                        >
+                          <img src="src/assets/icons/fabric.png" alt="" class="card_icon">
+                          <div>我是 Fabric 玩家</div>
+                        </div>
+                        <!-- <n-tag :bordered="false">
                           在写了...
-                        </n-tag>
-                        <!-- <n-space>
+                        </n-tag> -->
+                        <n-space>
                           <n-button strong secondary type="info">Fabric 模组</n-button>
                           <n-button strong secondary>原版工具</n-button>
-                        </n-space> -->
+                        </n-space>
                       </n-card>
                     </n-grid-item>
                     <n-grid-item style="opacity: .5;">
                       <n-card
-                        title="🔨 我是 Forge 玩家"
                         embedded
                         :bordered="false"
                       >
+                        <div 
+                          style="
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            font-size: 18px;
+                            color: var(--gray-8);
+                            margin-bottom: 20px;
+                          "
+                        >
+                          <img src="src/assets/icons/forge.webp" alt="" class="card_icon">
+                          <div>我是 Forge 玩家</div>
+                        </div>
                         <n-tag :bordered="false">
                           未开放
                         </n-tag>
@@ -168,10 +208,22 @@ const getWindowResize = function () {
                     </n-grid-item>
                     <n-grid-item style="opacity: .5;">
                       <n-card
-                        title="👨‍💻 我是服主"
                         embedded
                         :bordered="false"
                       >
+                        <div 
+                          style="
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            font-size: 18px;
+                            color: var(--gray-8);
+                            margin-bottom: 20px;
+                          "
+                        >
+                          <img src="src/assets/icons/bukkit.webp" alt="" class="card_icon">
+                          <div>我是 服主</div>
+                        </div>
                         <n-tag :bordered="false">
                           未开放
                         </n-tag>
@@ -293,5 +345,9 @@ const getWindowResize = function () {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+.card_icon {
+  width: 25px;
 }
 </style>
