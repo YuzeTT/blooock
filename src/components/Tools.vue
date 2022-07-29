@@ -1,14 +1,7 @@
 <script setup lang="ts">
 import { ref, Component, h, onMounted } from 'vue'
 import { NIcon } from 'naive-ui'
-// import { 
-//   StyleRound,
-//   ViewInArRound,
-//   InfoOutlined,
-//   LocalFireDepartmentRound,
-//   AttachFileRound,
-//   AppsRound
-// } from '@vicons/material';
+import About from './Tools/About.vue'
 
 import Icon_links from '/src/assets/icons/links.webp'
 import Icon_fabric from '/src/assets/icons/fabric.png'
@@ -27,7 +20,7 @@ function renderIcon (icon: Component) {
 }
 
 function renderImage (src: string) {
-  return () => h('img', {src: src, style: { width:'20px' }})
+  return () => h('img', {src: src, style: { width:'20px' }, alt: 'icon'})
 }
 
 const menuOptions = [
@@ -246,68 +239,7 @@ const getWindowResize = function () {
               </div>
               <!-- 关于 -->
               <div v-else-if="menuValue === '关于'" class="animate__animated animate__fadeIn animate__faster">
-                <div style="text-align: center;">
-                  <img src="../assets/images/logo.png" alt="" style="width: 200px;margin: 0 auto;display: flex;">
-                  <h2 style="color: var(--gray-8);">Blooock 起始页</h2>
-                </div>
-                <div>
-                  <h3 style="color: var(--gray-7);">更新记录</h3>
-                  <n-timeline>
-                    <!-- <n-timeline-item
-                      type="success"
-                      title="成功"
-                      content="哪里成功"
-                      time="2018-04-03"
-                    /> -->
-                    <!-- <n-timeline-item
-                      type="warning"
-                      title="警告"
-                      content="哪里警告"
-                      time="2018-04-03"
-                    /> -->
-                    <n-timeline-item
-                      type="info"
-                      title="项目启动"
-                      content="梦开始的地方"
-                      time="2022-07-24"
-                    />
-                    <!-- <n-timeline-item content="啊" /> -->
-                  </n-timeline>
-                </div>
-                <div>
-                  <h3 style="color: var(--gray-7);">开发人员</h3>
-                  <n-grid cols="1 s:2 m:3 l:4 xl:5 2xl:6" responsive="screen" :x-gap="12" :y-gap="12">
-                    <n-grid-item>
-                      <div class="developer_card">
-                        <img class="developer_avatar" src="../assets/images/avatars/YuzeTT.jpg" alt="">
-                        <div>
-                          <div class="developer_name">YuzeTT</div>
-                          <n-space>
-                            <n-tag :bordered="false" type="info">
-                              创始人
-                            </n-tag>
-                            <n-tag :bordered="false" type="info">
-                              开发
-                            </n-tag>
-                          </n-space>
-                        </div>
-                      </div>
-                    </n-grid-item>
-                    <n-grid-item>
-                      <div class="developer_card">
-                        <img class="developer_avatar" src="../assets/images/avatars/Cha-Shao.png" alt="">
-                        <div>
-                          <div class="developer_name">ChaShao</div>
-                          <n-space>
-                            <n-tag :bordered="false" type="info">
-                              CSS样式
-                            </n-tag>
-                          </n-space>
-                        </div>
-                      </div>
-                    </n-grid-item>
-                  </n-grid>
-                </div>
+                <About/>
               </div>
             </transition>
           </n-layout-content>
@@ -323,26 +255,6 @@ const getWindowResize = function () {
   padding: 5px;
   border-radius: 10px;
   background-color: var(--bg);
-}
-
-.developer_card {
-  /* background-color: var(--blue-sec); */
-  border: 1px solid var(--gray-4);
-  padding: 10px;
-  border-radius: 10px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.developer_avatar {
-  width: 60px;
-  border-radius: 5px;
-}
-
-.developer_name {
-  font-size: 20px;
-  color: var(--gray-7);
 }
 
 .fade-enter-active,

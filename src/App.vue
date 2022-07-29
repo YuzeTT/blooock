@@ -1,37 +1,23 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-// import Navbar from './components/Navbar.vue';
 import Time from './components/Time.vue';
 import Search from './components/Search.vue';
-// import Tools from './components/Tools.vue';
 import { KeyboardDoubleArrowDownRound } from '@vicons/material';
 import ReloadPrompt from './components/ReloadPrompt.vue';
+import package_ from '../package.json';
 
 const showHome = ref(true)
-
-// onMounted(() => {
-//   window.addEventListener('scroll', scrollTop, true)
-// })
-
-// const scrollTop = () => {
-//   console.log(window.scrollY)
-//   showHome.value = false
-//   if (window.scrollY > 10) {
-//     document.getElementById("tools")?.scrollIntoView(
-//       {
-//         behavior: 'smooth',
-//         block: "end"
-//       }
-//     )
-//   }
-// }
-// window.onscroll = function () {
-//   showHome.value = false
-// }
 
 const showTools = () => {
   console.log('showTools')
 }
+
+console.log(
+  `%c Blooock %c v${package_.version} %c`,
+  'background:#f97316; padding: 1px; border-radius: 3px 0 0 3px; color: #fff',
+  'background:#ffedd5; padding: 1px; border-radius: 0 3px 3px 0; color: rgba(15, 23, 42, 0.85)',
+  'background:transparent'
+)
 </script>
 
 <template>

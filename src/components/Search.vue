@@ -13,43 +13,14 @@ const showList = ref<any>([true, true, true, true, false, false, false])
 // const showList = ref<boolean[]>([true, true, true, true, false, false, false])
 
 const list = ref([
-  { key: 0, name: '百度', url: 'http://www.baidu.com/s?wd=', color: '#2529d8' },
-  { key: 1, name: '谷歌', url: 'www.google.com', color: '#ea4335' },
-  { key: 2, name: '必应', url: 'www.bing.com', color: '#00a1f1' },
+  { key: 0, name: '百度', url: 'https://www.baidu.com/s?wd=', color: '#2529d8' },
+  { key: 1, name: '谷歌', url: 'https://www.google.com/search?q=', color: '#ea4335' },
+  { key: 2, name: '必应', url: 'https://www.bing.com/search?q=', color: '#00a1f1' },
   { key: 3, name: 'MC Wiki', url: 'https://minecraft.fandom.com/zh/wiki/Special:%E6%90%9C%E7%B4%A2?query=', color: '#db1f29' },
-  { key: 4, name: 'MC百科', url: 'https://search.mcmod.cn/s?key=' },
-  { key: 5, name: '插件百科', url: '...' },
-  { key: 6, name: 'CurseForge', url: '...' },
+  { key: 4, name: 'MC百科', url: 'https://search.mcmod.cn/s?key=', color: '#86C155' },
+  { key: 5, name: '插件百科', url: 'https://mineplugin.org/index.php?search=', color: '#3385FF' },
+  { key: 6, name: 'CurseForge', url: 'https://www.curseforge.com/minecraft/mc-mods/search?search=', color: '#0D0D0D' },
 ])
-// const list = [
-//   { name: '百度', url: 'http://www.baidu.com/s?wd=' },
-//   { name: '谷歌', url: 'www.google.com' },
-//   { name: '必应', url: 'www.bing.com' },
-//   { name: 'MC Wiki', url: '...' },
-//   { name: 'MC百科', url: '...' },
-//   { name: '插件百科', url: '...' },
-//   { name: 'CurseForge', url: '...' },
-// ]
-
-// const list_other = list.other
-
-// list.forEach((item:any) => {
-//   if (!item.show) {
-//     // item.url = item.url + input.value
-//     // item.label = item.name
-//     // item.key = item.name
-//     options.value = options + {
-//       label: item.name,
-//       key: item.name,
-//     }
-//   }
-// })
-
-// {
-//   label: '滨海湾金沙，新加坡',
-//   key: 'marina bay sands',
-//   disabled: true
-// },
 
 const change_tab = (index: number) => {
   tab.value = index
@@ -84,24 +55,13 @@ document.onkeydown = function (e) {
 
 const go = () => {
   if (input.value) {
-    console.log('go')
-    switch(tab.value) {
-      case 0:
-        window.open(`https://www.baidu.com/s?wd=${input.value}`)
-        break
-      case 1:
-        window.open(`https://www.google.com/search?q=${input.value}`)
-        break
-      case 2:
-        window.open(`https://www.bing.com/search?q=${input.value}`)
-        break
-      case 3:
-        window.open(`https://minecraft.fandom.com/zh/wiki/Special:%E6%90%9C%E7%B4%A2?query=${input.value}`)
-        break
-      case 4:
-        window.open(`https://search.mcmod.cn/s?key=${input.value}`)
-        break
-    }
+    console.log(
+      `%c Go -> ${list.value[tab.value].name} %c ${list.value[tab.value].url+input.value} %c`,
+      'background:#3b82f6; padding: 1px; border-radius: 3px 0 0 3px; color: #fff',
+      'background:#dbeafe; padding: 1px; border-radius: 0 3px 3px 0; color: rgba(15, 23, 42, 0.85)',
+      'background:transparent'
+    )
+    window.open(list.value[tab.value].url+input.value)
   }
   input.value = ''
 }
@@ -151,8 +111,9 @@ const saveList = () => {
     </n-space>
   </div>
   <div class="input_box">
-    <input type="text" class="input" @keydown.enter="go" v-model="input" ref="inputVal">
-    <n-button strong secondary circle class="input_btn" size="large" @click="go" :disabled="input === ''">
+    <label for="text"></label>
+    <input id="text" type="text" class="input" @keydown.enter="go" v-model="input" ref="inputVal">
+    <n-button strong secondary circle class="input_btn" size="large" @click="go" :disabled="input === ''" aria-label="search">
       <template #icon>
         <n-icon color="var(--gray-7)"><SubdirectoryArrowLeftRound /></n-icon>
       </template>
