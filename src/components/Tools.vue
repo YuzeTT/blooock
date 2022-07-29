@@ -1,14 +1,21 @@
 <script setup lang="ts">
 import { ref, Component, h, onMounted } from 'vue'
 import { NIcon } from 'naive-ui'
-import { 
-  StyleRound,
-  ViewInArRound,
-  InfoOutlined,
-  LocalFireDepartmentRound,
-  AttachFileRound,
-  AppsRound
-} from '@vicons/material';
+// import { 
+//   StyleRound,
+//   ViewInArRound,
+//   InfoOutlined,
+//   LocalFireDepartmentRound,
+//   AttachFileRound,
+//   AppsRound
+// } from '@vicons/material';
+
+import Icon_links from '/src/assets/icons/links.webp'
+import Icon_fabric from '/src/assets/icons/fabric.png'
+import Icon_forge from '/src/assets/icons/forge.webp'
+import Icon_bukkit from '/src/assets/icons/bukkit.webp'
+import Icon_vanilla from '/src/assets/icons/vanilla.webp'
+import Icon_fire from '/src/assets/icons/fire.webp'
 
 const inverted = ref<boolean>(false)
 const menuValue = ref<string>('导航')
@@ -26,24 +33,24 @@ const menuOptions = [
   {
     label: '导航',
     key: '导航',
-    icon: renderImage('src/assets/icons/links.webp'),
+    icon: renderImage(Icon_links),
   },
   {
     label: 'Fabirc 模组',
     key: 'Fabirc模组',
-    icon: renderImage('src/assets/icons/fabric.png'),
+    icon: renderImage(Icon_fabric),
     children: [
       {
         label: '热门模组',
         key: 'Fabirc-热门模组',
-        icon: renderImage('src/assets/icons/fire.webp'),
+        icon: renderImage(Icon_fire),
       },
     ]
   },
   {
     label: 'Forge 模组',
     key: 'Forge模组',
-    icon: renderImage('src/assets/icons/forge.webp'),
+    icon: renderImage(Icon_forge),
     // children: [
     //   {
     //     label: '热门模组',
@@ -61,7 +68,7 @@ const menuOptions = [
     // type: 'group',
     label: 'Bukkit 插件',
     key: '插件',
-    icon: renderImage('src/assets/icons/bukkit.webp'),
+    icon: renderImage(Icon_bukkit),
     // children: [
     //   {
     //     label: '热门插件',
@@ -74,12 +81,12 @@ const menuOptions = [
     // type: 'group',
     label: '原版',
     key: '原版',
-    icon: renderImage('src/assets/icons/vanilla.webp'),
+    icon: renderImage(Icon_vanilla),
     children: [
       {
         label: '热门网站',
         key: '热门网站',
-        icon: renderImage('src/assets/icons/fire.webp'),
+        icon: renderImage(Icon_fire),
       },
     ]
   },
@@ -97,7 +104,7 @@ const menuOptions = [
   {
     label: '关于',
     key: '关于',
-    icon: renderImage('src/assets/icons/about.webp'),
+    icon: renderImage(Icon_fire),
   },
 ]
 
@@ -167,7 +174,7 @@ const getWindowResize = function () {
                             margin-bottom: 20px;
                           "
                         >
-                          <img src="src/assets/icons/fabric.png" alt="" class="card_icon">
+                          <img :src="Icon_fabric" alt="" class="card_icon">
                           <div>我是 Fabric 玩家</div>
                         </div>
                         <!-- <n-tag :bordered="false">
@@ -194,7 +201,7 @@ const getWindowResize = function () {
                             margin-bottom: 20px;
                           "
                         >
-                          <img src="src/assets/icons/forge.webp" alt="" class="card_icon">
+                          <img :src="Icon_forge" alt="" class="card_icon">
                           <div>我是 Forge 玩家</div>
                         </div>
                         <n-tag :bordered="false">
@@ -221,7 +228,7 @@ const getWindowResize = function () {
                             margin-bottom: 20px;
                           "
                         >
-                          <img src="src/assets/icons/bukkit.webp" alt="" class="card_icon">
+                          <img :src="Icon_bukkit" alt="" class="card_icon">
                           <div>我是 服主</div>
                         </div>
                         <n-tag :bordered="false">
