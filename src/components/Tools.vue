@@ -16,6 +16,7 @@ import Icon_forge from '/src/assets/icons/forge.webp'
 import Icon_bukkit from '/src/assets/icons/bukkit.webp'
 import Icon_vanilla from '/src/assets/icons/vanilla.webp'
 import Icon_fire from '/src/assets/icons/fire.webp'
+import Icon_about from '/src/assets/icons/about.webp'
 
 const inverted = ref<boolean>(false)
 const menuValue = ref<string>('导航')
@@ -104,7 +105,7 @@ const menuOptions = [
   {
     label: '关于',
     key: '关于',
-    icon: renderImage(Icon_fire),
+    icon: renderImage(Icon_about),
   },
 ]
 
