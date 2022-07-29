@@ -21,7 +21,7 @@ const close = async () => {
   >
     <div class="message">
       <span v-if="offlineReady">
-        App ready to work offline
+        网站已自动更新, 请刷新页面~
       </span>
       <span v-else>
         更新啦~ 点击刷新即可更新（放心，很快的！）
@@ -31,7 +31,7 @@ const close = async () => {
       刷新
     </button>
     <button @click="close">
-      算了
+      继续使用旧版
     </button>
   </div>
 </template>
