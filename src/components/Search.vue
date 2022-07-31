@@ -9,8 +9,7 @@ const tab = ref<number>(0)
 const input = ref<string>('')
 const inputVal = ref<any>(null)
 const showEditModal = ref<boolean>(false)
-const showList = ref<any>([true, true, true, true, false, false, false])
-// const showList = ref<boolean[]>([true, true, true, true, false, false, false])
+const showList = ref<boolean[]>([true, true, true, true, false, false, false])
 
 const list = ref([
   { key: 0, name: '百度', url: 'https://www.baidu.com/s?wd=', color: '#2529d8' },
@@ -98,9 +97,6 @@ const saveList = () => {
       </template>
       <div>
         <div class="list_item_keyword">Alt + Enter</div>
-        <!-- <n-dropdown trigger="hover" :options="options" @select="handleSelect">
-          <div class="list_item">更多...</div>
-        </n-dropdown> -->
         <div class="list_item other" @click="editLinks">
           <n-icon>
             <EditRound/>
@@ -112,7 +108,7 @@ const saveList = () => {
   </div>
   <div class="input_box">
     <label for="text"></label>
-    <input id="text" type="text" class="input" @keydown.enter="go" v-model="input" ref="inputVal">
+    <input id="text" autocomplete="off" type="text" class="input" @keydown.enter="go" v-model="input" ref="inputVal">
     <n-button strong secondary circle class="input_btn" size="large" @click="go" :disabled="input === ''" aria-label="search">
       <template #icon>
         <n-icon color="var(--gray-7)"><SubdirectoryArrowLeftRound /></n-icon>
@@ -121,16 +117,6 @@ const saveList = () => {
   </div>
   <n-drawer v-model:show="showEditModal" :width="200" :placement="'right'">
     <n-drawer-content title="快捷搜索">
-      <!-- <div>
-        <table>
-          <template v-for="(item, i) in list" :key="i">
-            <tr>
-              <td>{{ item.name }}</td>
-              <td style="padding-left: 10px;"><n-switch v-model:value="showList[item.key]" /></td>
-            </tr>
-          </template>
-        </table>
-      </div> -->
       <n-space vertical>
         <n-space v-for="(item, i) in list" :key="i" justify="space-between">
           <div>{{ item.name }}</div>
@@ -206,6 +192,11 @@ const saveList = () => {
   max-width: 500px;
   border-radius: 999px;
   padding: 5px;
+  transition: box-shadow .2s;
+}
+
+.input_box:focus-within {
+  box-shadow: 0 6px 20px rgb(93 93 93 / 13%);
 }
 
 .input {

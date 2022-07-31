@@ -3,7 +3,7 @@
   "private": true,
   "description": "一个专属于Minecraft玩家的起始页",
   "author": "YuzeTT <yuzett@outlook.com>",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "license": "MIT",
   "type": "module",
   "scripts": {

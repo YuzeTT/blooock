@@ -6,12 +6,6 @@ import { KeyboardDoubleArrowDownRound } from '@vicons/material';
 import ReloadPrompt from './components/ReloadPrompt.vue';
 import package_ from '../package.json';
 
-const showHome = ref(true)
-
-const showTools = () => {
-  console.log('showTools')
-}
-
 console.log(
   `%c Blooock %c v${package_.version} %c`,
   'background:#f97316; padding: 1px; border-radius: 3px 0 0 3px; color: #fff',
@@ -37,7 +31,7 @@ console.log(
             </div>
           </div>
           <div class="bottom">
-            <div>
+            <!-- <div>
               <n-space justify="center">
                 <n-icon size="1rem" style="vertical-align: -10%;">
                   <KeyboardDoubleArrowDownRound/>
@@ -46,12 +40,12 @@ console.log(
                   下滑有惊喜
                 </div>
               </n-space>
-            </div>
+            </div> -->
+            <div class="white_bar"></div>
           </div>
         </div>
         <div style="margin-top: 100vh;"></div>
       </div>
-      <!-- <Tools/> -->
       <div id="tools">
         <router-view/>
       </div>
@@ -63,52 +57,13 @@ console.log(
 .time {
   font-size: 64px;
   position: absolute;
-  top: 20%;
+  top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: var(--gray-8);
   font-weight: bold;
   font-family: "Microsoft Yahei Light","Microsoft Yahei","PingFang SC","Helvetica Neue",Helvetica,Tahoma,Arial,sans-serif;;
 }
-
-/* .mc-input_box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mc-input {
-  font-family: Mc;
-  outline: none;
-  background-color: #000;
-  border: #A0A0A0 2px solid;
-  color: #FFF;
-  font-size: 1.3rem;
-  padding: 10px;
-  
-} */
-
-/* .mc-button {
-  font-family: Mc;
-  font-size: 1.3rem;
-  padding: 8px 55px;
-  color: #FFF;
-  outline: #000 2px solid;
-  background-color: #6F6F6F;
-  border-left: #AAAAAA 2px solid;
-  border-top: #AAAAAA 2px solid;
-  border-right: #585858 2px solid;
-  border-bottom: #585858 4px solid;
-}
-
-.mc-button:active {
-  color: #FFFFA0;
-  background-color: #7E88BF;
-  border-left: #BEC7FF 2px solid;
-  border-top: #BEC7FF 2px solid;
-  border-right: #5C669D 2px solid;
-  border-bottom: #5C669D 4px solid;
-} */
 
 .box {
   position: absolute;
@@ -121,11 +76,18 @@ console.log(
 .bottom {
   position: absolute;
   bottom: 0;
-  /* left: 0; */
   width: 100%;
   text-align: center;
   margin: 20px 0;
   color: var(--gray-6);
   font-size: 1rem;
+}
+
+.white_bar {
+  height: 5px;
+  background: var(--gray-5);
+  width: 80px;
+  margin: 0 auto;
+  border-radius: 999px;
 }
 </style>
